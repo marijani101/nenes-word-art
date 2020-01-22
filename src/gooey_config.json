@@ -1,0 +1,228 @@
+{
+  "language": "english",
+  "target": "\"C:\\python37\\python.exe\" -u \"automate.py\"",
+  "suppress_gooey_flag": false,
+  "program_name": "NENE Word Art",
+  "program_description": "Tool for creating and downloading text word art",
+  "sidebar_title": "Actions",
+  "default_size": [
+    610,
+    530
+  ],
+  "auto_start": false,
+  "show_advanced": true,
+  "run_validators": true,
+  "encoding": "utf-8",
+  "show_stop_warning": true,
+  "show_success_modal": true,
+  "show_failure_modal": true,
+  "force_stop_is_error": true,
+  "poll_external_updates": false,
+  "return_to_config": false,
+  "show_restart_button": true,
+  "requires_shell": true,
+  "menu": [],
+  "clear_before_run": false,
+  "use_legacy_titles": true,
+  "num_required_cols": 2,
+  "num_optional_cols": 2,
+  "manual_start": false,
+  "monospace_display": false,
+  "image_dir": "::gooey/default",
+  "language_dir": "C:\\python37\\lib\\site-packages\\gooey\\languages",
+  "progress_regex": null,
+  "progress_expr": null,
+  "hide_progress_msg": false,
+  "disable_progress_bar_animation": false,
+  "disable_stop_button": false,
+  "navigation": "SIDEBAR",
+  "show_sidebar": false,
+  "tabbed_groups": false,
+  "group_by_type": true,
+  "body_bg_color": "#f0f0f0",
+  "header_bg_color": "#ffffff",
+  "header_height": 80,
+  "header_show_title": true,
+  "header_show_subtitle": true,
+  "header_image_center": false,
+  "footer_bg_color": "#f0f0f0",
+  "sidebar_bg_color": "#f2f2f2",
+  "terminal_panel_color": "#F0F0F0",
+  "terminal_font_color": "#000000",
+  "terminal_font_family": null,
+  "terminal_font_weight": null,
+  "terminal_font_size": null,
+  "richtext_controls": false,
+  "error_color": "#ea7878",
+  "layout": "standard",
+  "widgets": {
+    "curl": {
+      "command": "curl",
+      "name": "curl",
+      "help": null,
+      "description": "",
+      "contents": [
+        {
+          "name": "required_args_msg",
+          "items": [
+            {
+              "id": "Path",
+              "type": "FileChooser",
+              "cli_type": "positional",
+              "required": true,
+              "data": {
+                "display_name": "Path",
+                "help": "Path to store images",
+                "required": true,
+                "nargs": "",
+                "commands": [],
+                "choices": [],
+                "default": null,
+                "dest": "Path"
+              },
+              "options": {
+                "error_color": "#ea7878",
+                "label_color": "#000000",
+                "help_color": "#363636",
+                "full_width": false,
+                "validator": {
+                  "test": "user_input and not user_input.isspace()",
+                  "message": "This field is required"
+                },
+                "external_validator": {
+                  "cmd": ""
+                }
+              }
+            }
+          ],
+          "groups": [],
+          "description": null,
+          "options": {
+            "label_color": "#000000",
+            "description_color": "#363636",
+            "legacy": {
+              "required_cols": 2,
+              "optional_cols": 2
+            },
+            "columns": 2,
+            "padding": 10,
+            "show_border": false
+          }
+        },
+        {
+          "name": "optional_args_msg",
+          "items": [
+            {
+              "id": "83bc4570-751a-47b3-b170-c2836139e6c3",
+              "type": "RadioGroup",
+              "cli_type": "optional",
+              "group_name": "Choose Option",
+              "required": false,
+              "options": {
+                "error_color": "#ea7878",
+                "label_color": "#000000",
+                "help_color": "#363636",
+                "full_width": false,
+                "validator": {
+                  "type": "local",
+                  "test": "lambda x: True",
+                  "message": ""
+                },
+                "external_validator": {
+                  "cmd": ""
+                }
+              },
+              "data": {
+                "commands": [
+                  [
+                    "--Textfile"
+                  ],
+                  [
+                    "--Word"
+                  ]
+                ],
+                "widgets": [
+                  {
+                    "id": "--Textfile",
+                    "type": "FileChooser",
+                    "cli_type": "optional",
+                    "required": false,
+                    "data": {
+                      "display_name": "Textfile",
+                      "help": "Text File containing list of words",
+                      "required": false,
+                      "nargs": "",
+                      "commands": [
+                        "--Textfile"
+                      ],
+                      "choices": [],
+                      "default": null,
+                      "dest": "Textfile"
+                    },
+                    "options": {
+                      "error_color": "#ea7878",
+                      "label_color": "#000000",
+                      "help_color": "#363636",
+                      "full_width": false,
+                      "validator": {
+                        "test": "True",
+                        "message": ""
+                      },
+                      "external_validator": {
+                        "cmd": ""
+                      }
+                    }
+                  },
+                  {
+                    "id": "--Word",
+                    "type": "TextField",
+                    "cli_type": "optional",
+                    "required": false,
+                    "data": {
+                      "display_name": "Word",
+                      "help": "Convert Word to Word-Art",
+                      "required": false,
+                      "nargs": "",
+                      "commands": [
+                        "--Word"
+                      ],
+                      "choices": [],
+                      "default": null,
+                      "dest": "Word"
+                    },
+                    "options": {
+                      "error_color": "#ea7878",
+                      "label_color": "#000000",
+                      "help_color": "#363636",
+                      "full_width": false,
+                      "validator": {
+                        "test": "True",
+                        "message": ""
+                      },
+                      "external_validator": {
+                        "cmd": ""
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "groups": [],
+          "description": null,
+          "options": {
+            "label_color": "#000000",
+            "description_color": "#363636",
+            "legacy": {
+              "required_cols": 2,
+              "optional_cols": 2
+            },
+            "columns": 2,
+            "padding": 10,
+            "show_border": false
+          }
+        }
+      ]
+    }
+  }
+}
