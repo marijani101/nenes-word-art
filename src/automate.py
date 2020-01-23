@@ -10,38 +10,7 @@ from random import randint
 from gooey import Gooey, GooeyParser
 
 
-DOLPHIN = r"""
-               ,---.
-            ,.'-.   \
-           ( ( ,'"''"-.
-           `,X          `.
-           /` `           `._
-          (            ,   ,_\
-          |          ,---.,'o `.
-          |         / o   \     )
-           \ ,.    (      .____,
-            \| \    \____,'     \
-          '`'\  \        _,____,'
-          \  ,--      ,-'     \
-            ( C     ,'         \
-             `--'  .'           |
-               |   |         .O |
-             __|    \        ,-'_
-            / `L     `._  _,'  ' `.
-           /    `--.._  `',.   _\  `
-           `-.       /\  | `. ( ,\  \
-          _/  `-._  /  \ |--'  (     \
-         '  `-.   `'    \/\`.   `.    )
-               \  -hrr-    \ `.  |    |
-
-------------------------------------------------
-CC-BY Marijani Karanda.... 
-e-Government Authority....
-
-
-"""
-
-def download_content(name_list):
+def download_content(name_list, geckopath):
     """
     Function takes a list of words and downloads random pretty gifs of the words from 
     https://textanim.com/
@@ -52,7 +21,7 @@ def download_content(name_list):
     caps["pageLoadStrategy"] = "eager"  ##  interactive
 
     browser = webdriver.Firefox(
-        desired_capabilities=caps, executable_path=r"C:\geckodriver\geckodriver.exe"
+        desired_capabilities=caps, executable_path=geckopath
     )
     browser.get("https://textanim.com/")
 
@@ -121,7 +90,7 @@ def download_content(name_list):
 
 @Gooey(
     program_name="NENE Word Art",
-    default_size=[710, 530],
+    default_size=[600, 600],
     image_dir='./images',
     menu=[{
         'name': 'About',
@@ -148,15 +117,13 @@ def download_content(name_list):
 def main():
     settings_msg = "Tool for creating and downloading text word art"
     parser = GooeyParser(description=settings_msg)
-    # parser.add_argument('--verbose', help='be verbose', dest='verbose',
-    #                     action='store_true', default=False)
-    # # subs = parser.add_subparsers(help="commands", dest="command")
     subs = parser.add_subparsers(help="commands", dest="command")
-
     curl_parser = subs.add_parser(
         "curl", help="curl is a tool to transfer data from or to a server"
     )
-
+    curl_parser.add_argument('Path',
+                             help='Path to GeckoDriver',
+                             type=str, widget='FileChooser', default = r"C:\geckodriver\geckodriver.exe")
     verbosity = curl_parser.add_mutually_exclusive_group()
 
     verbosity.add_argument(
@@ -170,8 +137,6 @@ def main():
     )
     args = parser.parse_args()
 
-
-    # print("Hooray!")
     wordlist = []
 
     if args.Textfile:
@@ -182,10 +147,9 @@ def main():
         print(wordlist)
         download_content(wordlist)
     elif args.Word:
-        download_content(args.Word)
+        download_content(args.Word, args.Path)
     print("The word {} has been created".format(args.Word))
-    print("")
-    print(DOLPHIN)
+    print("The image has been downloaded in your downloads folder")
 
 
 if __name__ == "__main__":
